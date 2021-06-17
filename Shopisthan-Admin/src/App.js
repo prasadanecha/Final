@@ -18,8 +18,6 @@ import AddStore from "./containers/AddStore";
 import { OrderDetailsPage } from "./containers/OrderDetailsPage";
 import ShopProfile from "./containers/ShopProfile";
 import { PrivateRoute, StorePrivateRoute } from "./components/HOC/PrivateRoute";
-// import  StoreProduct from "./containers/StoreContainers/StoreProduct";
-// import { StoreOrder } from "./containers/StoreContainers/StoreOrders";
 import StoreHome from "./containers/StoreContainers/StoreHome";
 import StoreOrder from "./containers/StoreContainers/StoreOrders";
 import StoreProduct from "./containers/StoreContainers/StoreProduct";
