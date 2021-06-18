@@ -5,7 +5,7 @@ const path = require('path')
 const shortid = require('shortid');
 
 const { requireStoreSignin, storeMiddleware, uploadS3 } = require('../common-middleware');
-const { createProduct, getProductBySlug, getProductDetailsById, deleteProductById, editProduct } = require('../controller/store/product');
+const { createProduct, getProductBySlug, getProductDetailsById, deleteProductById, editProduct,outOfStock } = require('../controller/store/product');
 
 
 const storage = multer.diskStorage({
@@ -26,6 +26,7 @@ router.get('/products/:slug',getProductBySlug)
 router.get("/product/:productId", getProductDetailsById);
 router.delete('/product/deleteProductById',requireStoreSignin,storeMiddleware,deleteProductById);
 router.post('/editProduct',requireStoreSignin,storeMiddleware,editProduct);
+router.post('/outOfStockProduct',requireStoreSignin,storeMiddleware,outOfStock);
 
 
 module.exports = router;

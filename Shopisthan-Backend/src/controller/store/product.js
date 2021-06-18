@@ -154,3 +154,23 @@ exports.deleteProductById = (req, res) => {
 };
 
 
+exports.outOfStock = async(req,res)=>{
+  const {
+    outOfStock,_id
+   } = req.body;  
+
+   const updatedProduct = await Product.findOneAndUpdate({_id:_id},{$set:{ outOfStock }},
+      {new:true,useFindAndModify: false},
+      (err,updatedProductInfo)=>{
+          if(err) {
+               return res.status(400).json({err});
+          }
+          if(updatedProductInfo){
+              return res.status(201).json({updatedProductInfo});
+          }
+
+      })
+  
+}
+
+
