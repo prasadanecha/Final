@@ -69,7 +69,7 @@ const HomePage = (props) => {
             <div className="prodDesc clearfix">
               <div className="productDetails" style={{ width: "600px" }}>
                 <div>
-                  <div className="Storename" style={{ maxWidth: "504px" }}>
+                  <div className="Storename" style={{ maxWidth: "521px",top:'-1px' }}>
                     <p>Mi Store
                     <button style={{marginLeft:'250px'}} className="Btn-button-BGn Btn-primary-1H3 Btn-normal-hI4 js-adobeid-signup e2e-PrimaryNav-signup PrimaryNav-a11yButton-2Cl">Follow Store</button>
                     </p>

@@ -21,6 +21,8 @@ import { userLogin, signout, signup as _signup } from "../../actions";
  **/
 
 const Navigationbar = (props) => {
+  const [isMobile, setIsMobile] = useState(false);
+
   const [loginModal, setLoginModal] = useState(false);
   const [signup, setSignup] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -79,7 +81,6 @@ const Navigationbar = (props) => {
             </a>
           </div>
         }
-
         menus={[
           { label: "My Profile", href: "/myprofile", icon: null },
           { label: "Cart", href: "/cart", icon: null },
@@ -161,7 +162,7 @@ const Navigationbar = (props) => {
 
   return (
     <>
-      <div
+      {/* <div
         tabIndex="-1"
         className="PrimaryNav-strip-3w8 js-nav-primary e2e-PrimaryNav"
       >
@@ -218,7 +219,7 @@ const Navigationbar = (props) => {
                     label="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    // rightElement={<a href="#">Forgot?</a>}
+                  
                   />
                   <MaterialButton
                     title={signup ? "Register" : "Login"}
@@ -236,7 +237,6 @@ const Navigationbar = (props) => {
         </Modal>
         <a tabIndex="0" className="PrimaryNav-skipContent-2jC"></a>
         <a tabIndex="0" className="PrimaryNav-skipFooter-2Kk"></a>
-        <div className="PrimaryNav-hamburgerMenuActivate-2-M"></div>
         <ul className="PrimaryNav-coreNavigation-rdG">
           <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-home-2zH">
             <a href="/" className="PrimaryNav-coreNavigationLink-2uv">
@@ -246,7 +246,7 @@ const Navigationbar = (props) => {
             </a>
           </li>
         </ul>
-        <div className="PrimaryNav-siteSearch-ndn">
+        <div className={isMobile ? "nav-link-mobile" : "PrimaryNav-siteSearch-ndn"}>
           <ul className="PrimaryNav-coreNavigation-rdG">
             <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
               <a
@@ -293,12 +293,155 @@ const Navigationbar = (props) => {
             {auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
           </ul>
         </div>
-
-        {/* !--------- */}
         <div className="PrimaryNav-searchLink-10L"></div>
         <ul className="PrimaryNav-userControls-3sp"></ul>
-        <div className="PrimaryNav-adobeLogo-3YN"></div>
-      </div>
+        <div className="PrimaryNav-adobeLogo-3YN"></div> 
+       
+      </div>*/}
+      <nav className="navbar">
+        <Modal visible={loginModal} onClose={() => setLoginModal(false)}>
+          <div className="authContainer">
+            <div className="row">
+              <div className="leftspace">
+                <img
+                  style={{ width: 70, height: 70 }}
+                  src={Shopisthan__logo_bolte}
+                  alt="Shopisthan Logo"
+                />
+                <h2 style={{ marginTop: 10 }}>Login</h2>
+                <p style={{ fontSize: 15, marginTop: 10 }}>
+                  An effort to give everyone a Commerce Store – even if you are
+                  selling from home or from multiple locations.
+                </p>
+              </div>
+              <div className="rightspace">
+                <div
+                  className="loginInputContainer"
+                  style={{ width: 250, marginTop: 20 }}
+                >
+                  {auth.error && (
+                    <div style={{ color: "red", fontSize: 12 }}>
+                      {auth.error}
+                    </div>
+                  )}
+                  {signup && (
+                    <MaterialInput
+                      type="text"
+                      label="First Name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
+                  )}
+                  {signup && (
+                    <MaterialInput
+                      type="text"
+                      label="Last Name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
+                  )}
+
+                  <MaterialInput
+                    type="text"
+                    label="Email/Mobile Number"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <MaterialInput
+                    type="password"
+                    label="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                  <MaterialButton
+                    title={signup ? "Register" : "Login"}
+                    bgColor="#fb641b"
+                    textColor="#ffffff"
+                    style={{
+                      margin: "40px 0 20px 0",
+                    }}
+                    onClick={login}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal>
+        <h3 className="logo">
+          <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-home-2zH">
+            <a href="/" className="PrimaryNav-coreNavigationLink-2uv">
+              <div className="PrimaryNav-logoWrap-564">
+                <img src={Shopisthan__logo} alt="Shopisthan Logo" />
+              </div>
+            </a>
+          </li>
+        </h3>
+        <ul
+          className={isMobile ? "nav-links-mobile" : "nav-links"}
+          onClick={() => setIsMobile(false)}
+        >
+          <a className="home">
+            <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
+              <a
+                href="/"
+                className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-discover PrimaryNav-active-jbv"
+              >
+                <h3 className="PrimaryNav-coreNavigationLabel-3rj">Home</h3>
+              </a>
+            </li>
+          </a>
+          <a className="store" href="/ExploreStore">
+            <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
+              <a
+                href="/ExploreStore"
+                className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-live"
+              >
+                <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                  Stores
+                </h3>
+              </a>
+            </li>
+          </a>
+          <a className="fav" href="/cart">
+            <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
+              <a
+                href="/cart"
+                className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs"
+              >
+                <h3 className="PrimaryNav-coreNavigationLabel-3rj">Cart</h3>
+              </a>
+            </li>
+          </a>
+          <a className="cart">
+            <a
+              href="/cart"
+              className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs"
+            >
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">Wishlist</h3>
+            </a>
+          </a>
+          <div className="PrimaryNav-signup-Yf6" >
+            <div className="PrimaryNav-a11yButtonWrap-23Z">
+              <span className="PrimaryNav-a11yButtonHelper-3Vx"></span>
+            </div>
+            <ul className="PrimaryNav-loggedOutOptions-1SQ">
+              {auth.authenticate
+                ? renderLoggedInMenu()
+                : renderNonLoggedInMenu()}
+            </ul>
+          </div>
+        </ul>
+        <button
+          onClick={() => setIsMobile(!isMobile)}
+          className="mobile-menu-icon"
+        >
+          {isMobile ? (
+            <i className="fas fa-times"></i>
+          ) : (
+            <li className="fas fa-bars"></li>
+          )}
+        </button>
+      </nav>
     </>
   );
 };

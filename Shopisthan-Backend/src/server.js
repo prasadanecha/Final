@@ -21,6 +21,7 @@ const storeDetailsById = require('./routes/admin/storeDetailsById');
 const locationRoutes = require('./routes/admin/location');
 const userStore = require('./routes/user/store');
 // const locationRoutes = require('./models/admin/location');
+const userinitialdata = require('./routes/user/userinitialdata');
 
 // environment variable 
 env.config();
@@ -54,6 +55,8 @@ app.use('/api',storeDetailsById);
 app.use('/api',adminOrdersRoutes);
 app.use('/api',userStore);
 app.use('/api',locationRoutes);
+app.use('/api',userinitialdata);
+
 
 
 app.listen(process.env.PORT,()=>{

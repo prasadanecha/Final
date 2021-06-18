@@ -4,7 +4,7 @@ import { categoryContants, productConstants, storeContants } from "./constants"
 export const getInitialData = () => {
     return async dispatch => {
         // dispatch({ type: initialDataContants.GET_ALL_INITIAL_DATA_REQUEST });
-        const res = await axiosIntance.post(`/initialdata`);
+        const res = await axiosIntance.post(`/userinitialdata`);
         if (res.status === 200) {
             const { categories, products,stores } = res.data;
             dispatch({
