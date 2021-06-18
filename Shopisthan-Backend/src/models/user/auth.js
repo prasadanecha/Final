@@ -41,7 +41,10 @@ const userSchema = new mongoose.Schema({
           default: 'user'
       },
       contactNumber:{type: String},
-      pofilePicture: {type: String}
+      pofilePicture: {type: String},
+      following:[{
+        type: mongoose.Schema.Types.ObjectId,ref: 'Store'
+      }], 
   
   },{timestamps: true});
 

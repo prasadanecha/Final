@@ -105,3 +105,28 @@ export const editProductAction = (newProductDetails) =>{
  }
  }
  
+ 
+export const outOfStockProductAction = (outOfStock) =>{
+  return async dispatch => {
+   
+   dispatch({ type:productContants.EDIT_PRODUCT_BY_ID_REQUEST});
+          try{
+              const res = await storeAxiosIntance.post('/outOfStockProduct',{...outOfStock});
+              if(res.status === 201){
+                  dispatch({
+                      type:productContants.EDIT_PRODUCT_BY_ID_SUCCESS,
+                  });
+                  dispatch(getStoreData());
+              }else{
+                  dispatch({
+                     type:productContants.EDIT_PRODUCT_BY_ID_FAILURE,   
+                  })
+                   console.log(res.data.err);
+              }
+          }catch(error){
+              console.log(error);
+          }
+ 
+ 
+ }
+ }

@@ -8,7 +8,10 @@ import { WhatsappIcon } from "react-share";
 import { productShareApi } from '../../../urlConfig'
 import NewModal from '../../../components/UI/Modal'
 import Input from '../../../components/UI/Input'
-import { deleteProductById, editProductAction } from '../../../actions/store.product.action'
+import { deleteProductById, editProductAction,outOfStockProductAction } from '../../../actions/store.product.action'
+import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 
@@ -32,8 +35,24 @@ const StoreProduct = (props) => {
     const [editProductPrice,setEditProductPrice] = useState("");
     const [editProductQuantity,setEditProductQuantity] = useState("");
     const [editProductDesc,setEditProductDesc] = useState("");
+    const [checked, setChecked] = useState(false);
 
 
+    const toggleChecked = (product) => {
+        if(product.outOfStock ==="No"){
+            const outOfStock = {
+                _id:product._id,
+                outOfStock:"Yes"
+            }
+          dispatch(outOfStockProductAction(outOfStock))
+        }else{
+          const outOfStock = {
+              _id:product._id,
+              outOfStock:"No"
+          }
+        dispatch(outOfStockProductAction(outOfStock))
+        }
+      };
     
 
   const editProduct = (e) =>{
@@ -197,10 +216,14 @@ const StoreProduct = (props) => {
                                     }
                             >Edit</button> 
                             </div>
-                          
-                            {
-                                product.outOfStock
-                            }
+
+                            <FormGroup>
+                        
+                        <FormControlLabel
+                        control={<Switch checked={product.outOfStock ==="No" ? false:true} onChange={()=>{toggleChecked(product)}} />}
+                        label= {product.outOfStock ==="No" ? "In Stock" : "Out Of Stock"}
+                           />
+                        </FormGroup>
                           
                             
                         </div>
