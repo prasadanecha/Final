@@ -21,11 +21,13 @@ const HomePage = (props) => {
   let currentUrl = window.location.href;
   const product = useSelector((state) => state.product);
   const store = useSelector((state) => state.store.storeDetails);
-  console.log(product);
+  const location = useSelector((state)=>state.location.locations)
   const categoriesList = useSelector((state) => state.category.categories);
   const [productDetailModal, setProductDetailModal] = useState(false);
   const [productDetails, setProductDetails] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [filterdLocation,setFilterdLocation] = useState("");
+  const [filterdCategory,setFilterdCategory] = useState("");
   const [filterdTerm, setFilterdTerm] = useState("");
 
   console.log("categoriesList", categoriesList);
@@ -169,6 +171,8 @@ const HomePage = (props) => {
     );
   };
 
+
+
   const renderProduct = () => {
     return (
       <div style={{ padding: "30px" }}>
@@ -176,15 +180,16 @@ const HomePage = (props) => {
           {product.products
             .filter((product) => {
               if (searchTerm === "" || searchTerm == null) {
-                if (filterdTerm === "" || filterdTerm == null) {
+                if (filterdCategory === "" || filterdLocation === "") {
                   return product;
                 }
-                {
-                  /* else if(product.._id.includes(categoryType)){
+            
+                else if(product.ParCategory._id.includes(filterdTerm) || product.createdBy.shopLocation.includes(filterdTerm)){
                       return product;
-                    } */
-                }
-              } else if (
+                    } 
+                
+              } 
+              else if (
                 product.name
                   .toLowerCase()
                   .split(" ")
@@ -297,7 +302,24 @@ const HomePage = (props) => {
             <li>
               <a className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua">
                 <div className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5">
-                  <h5 className="SubCategory-label-30F">Location</h5>
+                <select
+                    className="SubCategory-label-30F"
+                    value={filterdLocation}
+                    onChange={(e) => {
+                      const selectedLocation = e.target.value;
+                      setFilterdTerm(selectedLocation);
+                      setFilterdLocation(selectedLocation);
+                      setFilterdCategory("");
+                      setSearchTerm("");
+                    }}
+                  >
+                    <option value="">location</option>
+                    {location.map((value) => (
+                      <option key={value._id} value={value._id}>
+                        {value.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </a>
             </li>
@@ -306,10 +328,13 @@ const HomePage = (props) => {
                 <div className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5">
                   <select
                     className="SubCategory-label-30F"
-                    value={filterdTerm}
+                    value={filterdCategory}
                     onChange={(e) => {
-                      const selectedProductCategory = e.target.value;
-                      setFilterdTerm(selectedProductCategory);
+                      const selectedCategory = e.target.value;
+                      setFilterdCategory(selectedCategory)
+                      setFilterdTerm(selectedCategory);
+                      setFilterdLocation("");
+                      setSearchTerm("");
                     }}
                   >
                     <option value="">Category</option>

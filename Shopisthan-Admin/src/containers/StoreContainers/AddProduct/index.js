@@ -16,7 +16,7 @@ import Input from '../../../components/UI/Input';
 const AddProduct = (props) =>{
 
  
-    const [parCategoryId, setParCategoryId] = useState('');
+  
     const [categoryId, setCategoryId] = useState('');
     const [name, setName] = useState('');
     const [quantity, setQuantity] = useState('');
@@ -60,8 +60,7 @@ const createProduct = (e)=>{
     e.preventDefault();
        if(
        name ==="" || quantity === "" || price ==="" || 
-       description === "" || productPictures.length === 0 || categoryId ==="" ||
-       parCategoryId ==="" 
+       description === "" || productPictures.length === 0 || categoryId ==="" 
        ){
          return (alert("Fill all the details"))
        }
@@ -73,7 +72,7 @@ const createProduct = (e)=>{
        from.append('price', price);
        from.append('description', description);
        from.append('category', categoryId);
-       from.append('ParCategory',parCategoryId)
+       from.append('ParCategory',storeCategory)
 
        for (let pic of productPictures) {
            from.append('productPictures', pic); 
@@ -155,8 +154,8 @@ const createProduct = (e)=>{
              <Col md={4}>
            
              <select  className="form-control" 
-             value={parCategoryId}
-            onChange={(e) => setParCategoryId(e.target.value)}
+             value={categoryId}
+            onChange={(e) => setCategoryId(e.target.value)}
            >
                             <option>Product Pre-Category</option>
                  
@@ -175,7 +174,7 @@ const createProduct = (e)=>{
              </Col>
             
 
-             <Col md={4}>
+             {/* <Col md={4}>
            
            <select  className="form-control" 
              value={categoryId}
@@ -193,7 +192,7 @@ const createProduct = (e)=>{
                          </select>
 
                         
-           </Col>
+           </Col> */}
             
          </Row>
 
