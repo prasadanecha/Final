@@ -5,6 +5,7 @@ import authReducer from './auth.reducer';
 import userReducer from './user.reducer';
 import cartReducer from './cart.reducer';
 import storeReducers from './store.reducer';
+import locationReducers from './location.reducers';
 
 
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     auth : authReducer,
     cart: cartReducer,
     user: userReducer,
-    store: storeReducers
+    store: storeReducers,
+    location: locationReducers
 
 });
 
