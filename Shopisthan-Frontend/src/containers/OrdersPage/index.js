@@ -10,6 +10,7 @@ import "./style.css";
 import { Breed } from "../../components/MaterialUI";
 import { generatePublicUrl } from "../../urlConfig";
 import NavBar from "../Navbar";
+import Footer from "../../components/Footerr/Footer";
 
 /**
  * @author
@@ -64,7 +65,9 @@ const OrderPage = (props) => {
           ));
         })}
       </div>
+      <Footer/>
       </>
+     
   );
 };
 

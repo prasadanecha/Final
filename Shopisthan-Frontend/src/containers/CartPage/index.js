@@ -11,6 +11,7 @@ import PriceDetails from "../../components/PriceDetails";
 import "./style.css";
 import { MaterialButton } from "../../components/MaterialUI";
 import NavBar from "../Navbar";
+import Footer from "../../components/Footerr/Footer";
 
 /**
  * @author
@@ -75,8 +76,7 @@ const CartPage = (props) => {
   if (Object.keys(cartItems).length === 0) {
     return (
       <>
-        <NavBar />
-  
+      <NavBar/>
         <div
           className="container"
           style={{ backgroundColor: "rgb(255, 255, 255)" }}
@@ -131,6 +131,7 @@ const CartPage = (props) => {
             <div style={{ margin: "20px auto" }}></div>
           </div>
         </div>
+        <Footer/>
       </>
     );
   }
@@ -191,6 +192,7 @@ const CartPage = (props) => {
           }, 0)}
         />
       </div>
+      <Footer/>
     </>
   );
 };

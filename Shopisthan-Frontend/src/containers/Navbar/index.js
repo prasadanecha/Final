@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./style.css";
 import {
   Modal,
@@ -9,9 +9,11 @@ import {
 } from "../../components/MaterialUI";
 import Shopisthan__logo_bolte from "../../img/shopisthan_logo_bolte.png";
 import Shopisthan__logo from "../../img/shopisthan-logo.png";
-import Wishlist__logo from "../../img/newwishlistlogo.png";
 import Profilepiclogo from "../../img/icons8-male-user-50.png";
-import ExploreIcon from "../../img/explore-icon.svg";
+import Carticon from "../../img/cart.png";
+import Storeicon from "../../img/shop.png";
+import Homeicon from "../../img/home.png";
+import Wishlisticon from "../../img/heart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin, signout, signup as _signup } from "../../actions";
 
@@ -74,7 +76,7 @@ const Navigationbar = (props) => {
             <a href="/myprofile">
               <img
                 src={Profilepiclogo}
-                style={{ height: 30, width: 30, marginTop: 5, marginLeft: 3 }}
+                style={{ height: 22, width: 22, marginBottom:'3px', marginRight:"4px" }}
                 alt="Shopisthan Logo"
               />
               <span style={{ fontSize: 15 }}> {auth.user.firstName}</span>
@@ -162,142 +164,6 @@ const Navigationbar = (props) => {
 
   return (
     <>
-      {/* <div
-        tabIndex="-1"
-        className="PrimaryNav-strip-3w8 js-nav-primary e2e-PrimaryNav"
-      >
-        <Modal visible={loginModal} onClose={() => setLoginModal(false)}>
-          <div className="authContainer">
-            <div className="row">
-              <div className="leftspace">
-                <img
-                  style={{ width: 70, height: 70 }}
-                  src={Shopisthan__logo_bolte}
-                  alt="Shopisthan Logo"
-                />
-                <h2 style={{ marginTop: 10 }}>Login</h2>
-                <p style={{ fontSize: 15, marginTop: 10 }}>
-                  An effort to give everyone a Commerce Store – even if you are
-                  selling from home or from multiple locations.
-                </p>
-              </div>
-              <div className="rightspace">
-                <div
-                  className="loginInputContainer"
-                  style={{ width: 250, marginTop: 20 }}
-                >
-                  {auth.error && (
-                    <div style={{ color: "red", fontSize: 12 }}>
-                      {auth.error}
-                    </div>
-                  )}
-                  {signup && (
-                    <MaterialInput
-                      type="text"
-                      label="First Name"
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                    />
-                  )}
-                  {signup && (
-                    <MaterialInput
-                      type="text"
-                      label="Last Name"
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                    />
-                  )}
-
-                  <MaterialInput
-                    type="text"
-                    label="Email/Mobile Number"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <MaterialInput
-                    type="password"
-                    label="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  
-                  />
-                  <MaterialButton
-                    title={signup ? "Register" : "Login"}
-                    bgColor="#fb641b"
-                    textColor="#ffffff"
-                    style={{
-                      margin: "40px 0 20px 0",
-                    }}
-                    onClick={login}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </Modal>
-        <a tabIndex="0" className="PrimaryNav-skipContent-2jC"></a>
-        <a tabIndex="0" className="PrimaryNav-skipFooter-2Kk"></a>
-        <ul className="PrimaryNav-coreNavigation-rdG">
-          <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-home-2zH">
-            <a href="/" className="PrimaryNav-coreNavigationLink-2uv">
-              <div className="PrimaryNav-logoWrap-564">
-                <img src={Shopisthan__logo} alt="Shopisthan Logo" />
-              </div>
-            </a>
-          </li>
-        </ul>
-        <div className={isMobile ? "nav-link-mobile" : "PrimaryNav-siteSearch-ndn"}>
-          <ul className="PrimaryNav-coreNavigation-rdG">
-            <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
-              <a
-                href="/"
-                className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-discover PrimaryNav-active-jbv"
-              >
-                <h3 className="PrimaryNav-coreNavigationLabel-3rj">Home</h3>
-              </a>
-            </li>
-            <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
-              <a
-                href="/ExploreStore"
-                className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-live"
-              >
-                <h3 className="PrimaryNav-coreNavigationLabel-3rj">
-                  ExploreStore
-                </h3>
-              </a>
-            </li>
-            <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
-              <a
-                href="/cart"
-                className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs"
-              >
-                <h3 className="PrimaryNav-coreNavigationLabel-3rj">Cart</h3>
-              </a>
-            </li>
-            <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
-              <a
-                href="/cart"
-                className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs"
-              >
-                <h3 className="PrimaryNav-coreNavigationLabel-3rj">Wishlist</h3>
-              </a>
-              
-            </li>
-          </ul>
-        </div>
-        <div className="PrimaryNav-signup-Yf6">
-          <div className="PrimaryNav-a11yButtonWrap-23Z">
-            <span className="PrimaryNav-a11yButtonHelper-3Vx"></span>
-          </div>
-          <ul className="PrimaryNav-loggedOutOptions-1SQ">
-            {auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
-          </ul>
-        </div>
-        <div className="PrimaryNav-searchLink-10L"></div>
-        <ul className="PrimaryNav-userControls-3sp"></ul>
-        <div className="PrimaryNav-adobeLogo-3YN"></div> 
-       
-      </div>*/}
       <nav className="navbar">
         <Modal visible={loginModal} onClose={() => setLoginModal(false)}>
           <div className="authContainer">
@@ -371,7 +237,7 @@ const Navigationbar = (props) => {
           <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-home-2zH">
             <a href="/" className="PrimaryNav-coreNavigationLink-2uv">
               <div className="PrimaryNav-logoWrap-564">
-                <img src={Shopisthan__logo} alt="Shopisthan Logo" />
+                <span>Shopisthan</span>
               </div>
             </a>
           </li>
@@ -380,57 +246,66 @@ const Navigationbar = (props) => {
           className={isMobile ? "nav-links-mobile" : "nav-links"}
           onClick={() => setIsMobile(false)}
         >
-          <a className="home">
-            <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
-              <a
-                href="/"
-                className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-discover PrimaryNav-active-jbv"
-              >
-                <h3 className="PrimaryNav-coreNavigationLabel-3rj">Home</h3>
-              </a>
-            </li>
-          </a>
-          <a className="store" href="/ExploreStore">
-            <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
-              <a
-                href="/ExploreStore"
-                className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-live"
-              >
-                <h3 className="PrimaryNav-coreNavigationLabel-3rj">
-                  Stores
-                </h3>
-              </a>
-            </li>
-          </a>
-          <a className="fav" href="/cart">
-            <li className="PrimaryNav-coreNavigationItem-236 PrimaryNav-text-1ps">
-              <a
-                href="/cart"
-                className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs"
-              >
-                <h3 className="PrimaryNav-coreNavigationLabel-3rj">Cart</h3>
-              </a>
-            </li>
-          </a>
-          <a className="cart">
+          <Link className="cart" to="/">
             <a
-              href="/cart"
               className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs"
             >
-              <h3 className="PrimaryNav-coreNavigationLabel-3rj">Wishlist</h3>
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                  <img src={Homeicon} className="homepagenavbar-icon" />
+                  <a href="" class="middle">
+                    Home
+                  </a>
+                </div>
+              </h3>
             </a>
-          </a>
-          <div className="PrimaryNav-signup-Yf6" >
-            <div className="PrimaryNav-a11yButtonWrap-23Z">
-              <span className="PrimaryNav-a11yButtonHelper-3Vx"></span>
-            </div>
-            <ul className="PrimaryNav-loggedOutOptions-1SQ">
-              {auth.authenticate
-                ? renderLoggedInMenu()
-                : renderNonLoggedInMenu()}
-            </ul>
-          </div>
+          </Link>
+          <Link className="cart" to="/ExploreStore">
+            <a className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs">
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                <img src={Storeicon} className="homepagenavbar-icon" />
+                  <a href="" class="middle">
+                    Store
+                  </a>
+                </div>
+              </h3>
+            </a>
+          </Link>
+          <Link className="cart" to="/">
+            <a
+              className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs"
+            >
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                  <img src={Wishlisticon} className="homepagenavbar-icon" />
+                  <a href="" class="middle">
+                    Favorite
+                  </a>
+                </div>
+              </h3>
+            </a>
+          </Link>
+          <Link className="cart" to="/cart">
+            <a
+              className="PrimaryNav-coreNavigationLink-2uv e2e-Nav-jobs"
+            >
+              <h3 className="PrimaryNav-coreNavigationLabel-3rj">
+                <div class="link-background">
+                  <img src={Carticon} className="homepagenavbar-icon" />
+                  <a href="" class="middle">
+                    Cart
+                  </a>
+                </div>
+              </h3>
+            </a>
+          </Link>
         </ul>
+        <div className="PrimaryNav-signup-Yf6">
+          <ul className="PrimaryNav-loggedOutOptions-1SQ">
+            {auth.authenticate ? renderLoggedInMenu() : renderNonLoggedInMenu()}
+          </ul>
+        </div>
         <button
           onClick={() => setIsMobile(!isMobile)}
           className="mobile-menu-icon"
@@ -441,7 +316,10 @@ const Navigationbar = (props) => {
             <li className="fas fa-bars"></li>
           )}
         </button>
+        
+
       </nav>
+
     </>
   );
 };

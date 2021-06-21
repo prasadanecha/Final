@@ -14,6 +14,7 @@ import AddressForm from "./AddressForm";
 
 import "./style.css";
 import NavBar from "../Navbar";
+import Footer from "../../components/Footerr/Footer";
 
 /**
  * @author
@@ -346,6 +347,7 @@ const CheckoutPage = (props) => {
           }, 0)}
         />
       </div>
+      <Footer/>
 </>
   );
 };
