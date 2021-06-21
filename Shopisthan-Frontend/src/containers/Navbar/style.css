@@ -1,5 +1,6 @@
 /* nav style starts */
 
+
 /* responsive style starts */
 
 * {
@@ -8,17 +9,31 @@
   box-sizing: border-box;
 }
 
+.homepagenavbar-icon{
+  height: 13px;
+  margin: 5px;
+  margin-right: 7px;
+  margin-bottom: 11px;
+}
+
 .navbar {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 60px;
+  height: 45px;
   background-color: #f8f8f8;
   color: #191919;
+  padding-right: 60px;
+  padding-left: 65px;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  border: 1px solid #e7e7e7;
 }
 
 .logo {
-  font-size: 30px;
+  font-size: 25px;
+  font-weight: 400;
 }
 
 .nav-links {
@@ -40,18 +55,61 @@
   padding: 8px 8px;
   margin: 0 10px;
   cursor: pointer;
+    border: none;
+
+  
+}
+a.middle
+{
+    position: relative;
+}
+
+a.middle:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+
+a.middle:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
+  font-size: 22px;
+}
+
+/*
+.store :hover {
+  background: white;
+  border: 1px solid black;
+}
+
+.fav :hover {
+  background: white;
+  border: 1px solid black;
+}
+
+.cart :hover {
+  background: white;
+  border: 1px solid black;
 }
 
 .loginn {
   border: 1px solid #000000;
   border-radius: 5px;
-}
+} */
 
 .mobile-menu-icon {
   display: none;
 }
 @media screen and (max-width: 780px) {
-  .log0 {
+.log0 {
     display: flex;
     position: absolute;
     top: 15px;
@@ -99,7 +157,7 @@
 
 /* responsive style ends */
 
-.PrimaryNav-strip-3w8 {
+ .PrimaryNav-strip-3w8 {
   background-color: #fff;
   display: flex;
   height: 60px;
@@ -143,32 +201,8 @@
   display: flex;
 }
 
-ul,
-ol,
-dl {
-  margin: 0;
-  padding: 0;
-}
-ol,
-ul,
-li {
-  list-style: none;
-}
 
-ul {
-  display: block;
-  list-style-type: disc;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
-  border: 0;
-  font-size: 100%;
-  margin: 0;
-  outline: 0;
-  padding: 0;
-}
+
 
 .PrimaryNav-siteSearch-ndn {
   -webkit-box-align: center;
@@ -350,8 +384,8 @@ h3 {
 }
 
 .PrimaryNav-coreNavigationLabel-3rj {
-  font-size: 20px;
-  font-weight: 450;
+  font-size: 18px;
+  font-weight: 100;
   margin: 0;
   position: relative;
   color: #696969;
@@ -410,7 +444,7 @@ h3 {
   border-radius: 5px;
   display: -webkit-box;
   display: flex;
-  height: 42px;
+  height: 32px;
   width: 100%;
 }
 
@@ -442,11 +476,11 @@ h3 {
   user-select: none;
   background-color: #f9f9f9;
   border: 1px solid #d4d4d4;
-}
+} 
 
 /* /////////// */
 
-input,
+ input,
 textarea,
 select,
 optgroup,
@@ -616,7 +650,7 @@ button {
 }
 
 .Btn-normal-hI4 .Btn-labelWrapper-1jS {
-  padding: 8px 18px;
+  padding: 5px 10px;
 }
 .Btn-labelWrapper-1jS {
   -webkit-box-align: center;
@@ -655,9 +689,6 @@ button {
   z-index: 1;
 }
 
-.Btn-normal-hI4 .Btn-labelWrapper-1jS {
-  padding: 8px 18px;
-}
 .Btn-labelWrapper-1jS {
   -webkit-box-align: center;
   align-items: center;
@@ -674,4 +705,4 @@ button {
   border: 1px solid transparent;
   display: inline-block;
   max-width: 100%;
-}
+} 

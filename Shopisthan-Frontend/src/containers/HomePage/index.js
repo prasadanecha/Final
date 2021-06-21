@@ -11,6 +11,7 @@ import { WhatsappShareButton } from "react-share";
 import { WhatsappIcon } from "react-share";
 
 import Navigationbar from "../Navbar";
+import Footer from "../../components/Footerr/Footer";
 
 /**
  * @author
@@ -180,7 +181,7 @@ const HomePage = (props) => {
           {product.products
             .filter((product) => {
               if (searchTerm === "" || searchTerm == null) {
-                if (filterdCategory === "" || filterdLocation === "") {
+                if (filterdTerm === "" ||filterdTerm  === "") {
                   return product;
                 }
             
@@ -205,7 +206,7 @@ const HomePage = (props) => {
               }
             })
             .map((product, index) => (
-              <div key={product._id}>
+              <div key={product._id} style={{border: '1px solid #d4d4d4', borderRadius: '6px'}}>
                 <Link
                   onClick={() => showProductDetailsModal(product)}
                   key={product._id}
@@ -288,21 +289,22 @@ const HomePage = (props) => {
   return (
     <>
       <Navigationbar />
-      <div>
+      <div style={{paddingTop:'45px'}}>
         <nav
           className="NavigationBar-subcategoryList-1nX"
           style={{
-            paddingTop: "10px",
+           padding:'10px',
             border: "1px solid #eaeaea",
             boxShadow: "0 2px 4px rgb(25 25 25 / 15%)",
-            paddingLeft: "100px",
+            paddingLeft: "79px",
+            overflow:'auto'
           }}
         >
           <ul style={{ display: "contents" }}>
             <li>
               <a className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua">
                 <div className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5">
-                <select
+                <select className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5"
                     className="SubCategory-label-30F"
                     value={filterdLocation}
                     onChange={(e) => {
@@ -313,7 +315,7 @@ const HomePage = (props) => {
                       setSearchTerm("");
                     }}
                   >
-                    <option value="">location</option>
+                    <option className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua" value="">location</option>
                     {location.map((value) => (
                       <option key={value._id} value={value._id}>
                         {value.name}
@@ -344,13 +346,6 @@ const HomePage = (props) => {
                       </option>
                     ))}
                   </select>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a className="router-link-exact-active router-link-active NavigationBar-subcategoryLink-3Ua">
-                <div className="SubCategory-root-mwE SubCategory-active-Sxz NavigationBar-subcategory-2m5">
-                  <select {...props}></select>
                 </div>
               </a>
             </li>
@@ -397,6 +392,7 @@ const HomePage = (props) => {
         {renderProductDetailsModal()}
         {renderProduct()}
       </div>
+      <Footer/>
     </>
   );
 };

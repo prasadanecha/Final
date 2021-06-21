@@ -4,6 +4,11 @@
     justify-content: space-around;
     flex-wrap: wrap;
 }
+
+.border-for-store{
+    border: 1px solid #d4d4d4;
+    border-radius: 5px;
+}
 .nocard{
     min-width: 100px;
     min-height: 500px;

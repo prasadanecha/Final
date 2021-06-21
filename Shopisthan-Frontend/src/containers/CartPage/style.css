@@ -1,8 +1,9 @@
 .cartContainer {
   display: flex;
   max-width: 1260px;
-  margin: 15px auto;
+  margin: auto;
   justify-content: space-between;
+  padding-top: 55px;
 }
 
 Layout {
@@ -396,6 +397,7 @@ button, input, optgroup, select, textarea {
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 55px;
 }
 
 .emptyPage {
